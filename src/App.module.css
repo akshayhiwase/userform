@@ -1,0 +1,10 @@
+body {
+  background-color: #f2f6ff;
+}
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #425566;
+}
+body::-webkit-scrollbar-thumb {
+  background: #6e8192;
+}

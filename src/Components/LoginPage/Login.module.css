@@ -1,0 +1,84 @@
+.loginSection {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginContaint {
+  width: 33%;
+  background-color: #435c70;
+  height: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+.infoTextDiv h3 {
+  color: whitesmoke;
+}
+
+form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.inputFieldSection {
+  width: 90%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 32px;
+}
+.inputFieldSection label {
+  color: whitesmoke;
+}
+.inputFieldSection input {
+  background-color: #637586;
+  width: 90%;
+  height: 50px;
+  color: whitesmoke;
+  font-size: 15px;
+  border: hidden;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.inputFieldSection button {
+  width: 90%;
+  height: 50px;
+  color: #fff;
+  background-color: #f5a623;
+  border: 2px solid #f5a623;
+  font-size: 90%;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+button:hover {
+  background-color: #435c70;
+  color: #f5a623;
+}
+@media (max-width: 768px) {
+  .loginSection {
+    height: auto;
+  }
+  .loginContaint {
+    width: 60%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+@media (max-width: 468px) {
+  .loginSection {
+    height: auto;
+  }
+  .loginContaint {
+    width: 60%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}

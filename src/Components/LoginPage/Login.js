@@ -16,12 +16,14 @@ class Login extends React.Component {
             Axios.get("http://localhost:4000/user?mail=" + user.email)
                 .then(data => {
                     if (data.data.length === 0) {
+                        localStorage.removeItem("myUser")
                         localStorage.setItem("newUser", JSON.stringify(user.email))
                         const path = `userinfo`;
                         this.props.history.push(path);
                     } else {
                         resolve(data);
                         localStorage.setItem('myUser', JSON.stringify(data.data[0]));
+                        alert("Your Information is already store in database")
                         const path = `userinfo`;
                         this.props.history.push(path);
                     }
@@ -64,7 +66,7 @@ class Login extends React.Component {
                         </div>
 
                         <div className={classes.inputFieldSection}>
-                            <button className={classes.loginBtn}>Submit</button>
+                            <button>Submit</button>
                         </div>
 
                     </form>

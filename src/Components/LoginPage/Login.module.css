@@ -4,18 +4,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #abb2b9;
 }
 .loginContaint {
   width: 33%;
-  background-color: #435c70;
-  height: 500px;
+  background-color: whitesmoke;
+  height: 400px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
 }
 .infoTextDiv h3 {
-  color: whitesmoke;
+  font-weight: 600;
 }
 
 form {
@@ -35,32 +36,40 @@ form {
   padding-left: 32px;
 }
 .inputFieldSection label {
-  color: whitesmoke;
+  font-weight: 600;
+  font-size: 20px;
 }
 .inputFieldSection input {
-  background-color: #637586;
   width: 90%;
   height: 50px;
-  color: whitesmoke;
   font-size: 15px;
-  border: hidden;
   padding-left: 10px;
   box-sizing: border-box;
+}
+.inputFieldSection > div {
+  width: 90%;
+}
+
+.inputFieldSection div:nth-child(2) {
+  width: 60px;
+  height: 40px;
+  border: 0;
+  margin: 0;
 }
 .inputFieldSection button {
   width: 90%;
   height: 50px;
   color: #fff;
-  background-color: #f5a623;
-  border: 2px solid #f5a623;
+  background-color: #3498db;
   font-size: 90%;
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
+  border: 0;
 }
 button:hover {
-  background-color: #435c70;
-  color: #f5a623;
+  background-color: #2874a6;
+  color: whitesmoke;
 }
 @media (max-width: 768px) {
   .loginSection {

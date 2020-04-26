@@ -6,6 +6,7 @@ import States from './States.json'
 class UserInfo extends React.Component {
     state = {
         userInfo: [],
+        userEmail: JSON.parse(localStorage.getItem("useremail"))
 
     }
     onFormSubmit = (e) => {
@@ -19,9 +20,16 @@ class UserInfo extends React.Component {
         }
         console.log(userData)
         alert("Your Information Added Successfully")
+        e.target.reset()
     }
 
     render() {
+        console.log(this.state.userEmail)
+        const user = <div className={classes.user}>
+            <h1>Welcome</h1>
+            <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" alt="User" />
+            <h3>{this.state.userEmail.email}</h3>
+        </div>
         const state = States.map((data, i) => {
             return (
                 <option key={i} value={data.key} required>{data.name}</option>
@@ -30,7 +38,13 @@ class UserInfo extends React.Component {
 
         return (
             <div className={classes.infoContainer}>
+
+                {user}
                 <div className={classes.userSection}>
+                    <div className={classes.head}>
+                        <h3>Please Fill Your Details</h3>
+                    </div>
+
                     <form action="" onSubmit={this.onFormSubmit}>
                         <div className={classes.formData}>
                             <div className={classes.inputFill}>
@@ -74,7 +88,7 @@ class UserInfo extends React.Component {
                                 </select>
                             </div>
                             <div className={classes.addUserButton}>
-                                <button >Add User</button>
+                                <button >Submit</button>
                             </div>
                         </div>
                     </form>

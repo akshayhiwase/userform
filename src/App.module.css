@@ -3,8 +3,8 @@ body {
 }
 body::-webkit-scrollbar {
   width: 10px;
-  background-color: #425566;
+  background-color: gray;
 }
 body::-webkit-scrollbar-thumb {
-  background: #6e8192;
+  background: white;
 }

@@ -1,34 +1,38 @@
 import React from 'react';
 import classes from './UserInfo.module.css';
-import States from './States.json'
+import States from './States.json';
+import Axios from "axios";
 
 
 class UserInfo extends React.Component {
-    state = {
-        userInfo: [],
-        userEmail: JSON.parse(localStorage.getItem("useremail"))
 
+    getApiResponse = (user) => {
+        Axios.post("http://localhost:4000/adduser", user)
+            .then((response) => {
+                console.log("this is submit data", response.data);
+            }).catch(err => console.log(err))
     }
     onFormSubmit = (e) => {
         e.preventDefault()
         const userData = {
-            username: e.target.username.value,
+            name: e.target.username.value,
             dob: e.target.dob.value,
             gender: e.target.gender.value,
             country: e.target.country.value,
             state: e.target.state.value
         }
         console.log(userData)
-        alert("Your Information Added Successfully")
+        this.getApiResponse(userData)
+        // alert("Your Information Added Successfully")
         e.target.reset()
+
     }
 
     render() {
-        console.log(this.state.userEmail)
         const user = <div className={classes.user}>
             <h1>Welcome</h1>
             <img src="https://cdn1.iconfinder.com/data/icons/avatar-3/512/Manager-512.png" alt="User" />
-            <h3>{this.state.userEmail.email}</h3>
+            {/* <h3>{this.state.userEmail.email}</h3> */}
         </div>
         const state = States.map((data, i) => {
             return (
@@ -37,6 +41,7 @@ class UserInfo extends React.Component {
         })
 
         return (
+
             <div className={classes.infoContainer}>
 
                 {user}

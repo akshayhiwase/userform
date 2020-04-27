@@ -36,9 +36,16 @@ class UserInfo extends React.Component {
             this.getApiResponse(userData)
             alert("Your Information Added Successfully")
             e.target.reset()
+            localStorage.clear()
+            const path = `/`;
+            this.props.history.push(path)
+
 
         } else {
             alert("Already Present")
+            localStorage.clear()
+            const path = `/`;
+            this.props.history.push(path)
         }
 
     }
@@ -82,29 +89,29 @@ class UserInfo extends React.Component {
                                 <label htmlFor="">Gender</label>
                                 <div className={classes.gender}>
                                     <div>
-                                        <input type="radio" id="male" name="gender" value="male" required />
+                                        <input type="radio" name="gender" value="male" required />
                                         <label>Male</label>
                                     </div>
                                     <div>
-                                        <input type="radio" id="female" name="gender" value="female" required />
+                                        <input type="radio" name="gender" value="female" required />
                                         <label>Female</label>
                                     </div>
                                     <div>
-                                        <input type="radio" id="other" name="gender" value="other" required />
+                                        <input type="radio" name="gender" value="other" required />
                                         <label>Other</label>
                                     </div>
                                 </div>
                             </div>
                             <div className={classes.inputFill}>
                                 <label>Country</label>
-                                <select className={classes.userSelectMenu} name="country" required value={this.state.alreadyUser.country}>
+                                <select className={classes.userSelectMenu} name="country" value={this.state.alreadyUser.country} required>
                                     <option value="Select country">Select Country</option>
                                     <option value="India">India</option>
                                 </select>
                             </div>
                             <div className={classes.inputFill}>
                                 <label>State</label>
-                                <select className={classes.userSelectMenu} name="state" required value={this.state.alreadyUser.state}>
+                                <select className={classes.userSelectMenu} name="state" value={this.state.alreadyUser.state} required>
                                     <option value="state">Select States</option>
                                     {state}
                                 </select>

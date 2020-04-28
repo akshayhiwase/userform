@@ -149,7 +149,7 @@ class EditProfile extends React.Component {
                                     value={this.state.account.email}
                                     noValidate
                                     required
-                                    onChange={this.onUserEdited}
+                                // onChange={this.onUserEdited}
                                 />
                                 {this.state.formErrors.email.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.email}</span>

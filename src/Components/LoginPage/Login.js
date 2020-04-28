@@ -1,7 +1,9 @@
 import React from 'react';
 import classes from './Login.module.css';
 import { emailRegex, formValid } from '../../Utils/Utilities/Utilities';
-import registerdUser from '../../Utils/RegisteredUser/RegisterUser';
+import { connect } from 'react-redux';
+import Axios from 'axios'
+import * as actionCreators from '../../Redux/Actions/Actions'
 
 class Login extends React.Component {
 
@@ -22,13 +24,31 @@ class Login extends React.Component {
                 email: e.target.email.value,
                 password: e.target.password.value
             }
-            console.log(loginUser)
-            registerdUser(loginUser)
+            this.props.loadUser(loginUser)
+            this.registerdUser(loginUser)
         } else {
-            alert("Please Fill Proper Details")
-            console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+            alert("Please create account")
         }
 
+    }
+    registerdUser = (user) => {
+        return new Promise((resolve, reject) => {
+            Axios.get("http://localhost:4000/user?mail=" + user.email)
+                .then(data => {
+                    if (data.data.length === 0) {
+                        alert("Youre Profile is not registerd please create account")
+                    } else {
+                        resolve(data);
+                        console.log(data.data[0]);
+                        alert("Login Successfull")
+                        const path = `profile`;
+                        this.props.history.push(path);
+                    }
+                }).catch(err => {
+                    console.log("Error occured", err);
+                    reject(err)
+                })
+        })
     }
     handleChange = e => {
         e.preventDefault();
@@ -108,6 +128,8 @@ class Login extends React.Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return state
+};
 
-
-export default Login;
+export default connect(mapStateToProps, actionCreators)(Login);

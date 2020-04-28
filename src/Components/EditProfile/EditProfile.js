@@ -1,17 +1,18 @@
 import React from 'react';
-import classes from './UserInfo.module.css';
-import States from './States.json';
+import classes from './EditProfile.module.css';
+import States from '../UserInfo/States.json';
 import { emailRegex, formValid, numberRegex } from '../../Utils/Utilities/Utilities';
-import newUser from '../../Utils/NewUser/NewUser';
+import { connect } from 'react-redux'
+// import newUser from '../../Utils/NewUser/NewUser';
 
 
 
-class UserInfo extends React.Component {
+class EditProfile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            alreadyUser: {},
+            account: { ...this.props.loginUser },
             firstName: null,
             lastName: null,
             email: null,
@@ -37,7 +38,6 @@ class UserInfo extends React.Component {
                 email: e.target.email.value,
                 firstname: e.target.firstName.value,
                 lastname: e.target.lastName.value,
-                password: e.target.password.value,
                 number: e.target.number.value,
                 dob: e.target.dob.value,
                 gender: e.target.gender.value,
@@ -45,15 +45,21 @@ class UserInfo extends React.Component {
                 state: e.target.state.value
             }
             console.log(userData)
-            newUser(userData)
+            // newUser(userData)
             alert("Your profile succesfully Created now You can Login to your account")
-            const path = `/`;
-            this.props.history.push(path)
+            // const path = `/`;
+            // this.props.history.push(path)
         } else {
             console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
             alert("Please fill as per Required information")
         }
 
+    }
+    onUserEdited = (value) => {
+        this.setState({
+            account: value
+        })
+        console.log(value)
     }
     handleChange = e => {
         e.preventDefault();
@@ -118,9 +124,10 @@ class UserInfo extends React.Component {
                                     placeholder="First Name"
                                     type="text"
                                     name="firstName"
+                                    value={this.state.account.firstname}
                                     noValidate
                                     required
-                                    onChange={this.handleChange}
+                                    onChange={(e) => this.onUserEdited(e.target.value)}
                                 />
                                 {this.state.formErrors.firstName.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.firstName}</span>
@@ -134,9 +141,10 @@ class UserInfo extends React.Component {
                                     placeholder="Last Name"
                                     type="text"
                                     name="lastName"
+                                    value={this.state.account.lastname}
                                     noValidate
                                     required
-                                    onChange={this.handleChange}
+                                    onChange={(e) => this.onUserEdited(e.target.value)}
                                 />
                                 {this.state.formErrors.lastName.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.lastName}</span>
@@ -150,9 +158,10 @@ class UserInfo extends React.Component {
                                     placeholder="Email"
                                     type="email"
                                     name="email"
+                                    value={this.state.account.firstname}
                                     noValidate
                                     required
-                                    onChange={this.handleChange}
+                                // onChange={this.onUserEdited}
                                 />
                                 {this.state.formErrors.email.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.email}</span>
@@ -167,8 +176,9 @@ class UserInfo extends React.Component {
                                     type="password"
                                     name="password"
                                     noValidate
+                                    value={this.state.account.password}
                                     required
-                                    onChange={this.handleChange}
+                                    onChange={(e) => this.onUserEdited(e.target.value)}
                                 />
                                 {this.state.formErrors.password.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.password}</span>
@@ -181,9 +191,10 @@ class UserInfo extends React.Component {
                                     placeholder="Number"
                                     type="number"
                                     name="number"
+                                    value={this.state.account.number}
                                     noValidate
                                     required
-                                    onChange={this.handleChange}
+                                    onChange={(e) => this.onUserEdited(e.target.value)}
                                 />
                                 {this.state.formErrors.number.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.number}</span>
@@ -191,7 +202,7 @@ class UserInfo extends React.Component {
                             </div>
                             <div className={classes.inputFill}>
                                 <label>DOB</label>
-                                <input type="date" required name="dob" />
+                                <input type="date" required name="dob" value={this.state.account.dob} onChange={(e) => this.onUserEdited(e.target.value)} />
                             </div>
 
                             <div className={classes.genderSelect}>
@@ -213,14 +224,14 @@ class UserInfo extends React.Component {
                             </div>
                             <div className={classes.inputFill}>
                                 <label>Country</label>
-                                <select className={classes.userSelectMenu} name="country" required>
+                                <select className={classes.userSelectMenu} name="country" required value={this.state.account.country} onChange={(e) => this.onUserEdited(e.target.value)}>
                                     <option value="Select country">Select Country</option>
                                     <option value="India">India</option>
                                 </select>
                             </div>
                             <div className={classes.inputFill}>
                                 <label>State</label>
-                                <select className={classes.userSelectMenu} name="state" required>
+                                <select className={classes.userSelectMenu} name="state" required value={this.state.account.state} onChange={(e) => this.onUserEdited(e.target.value)}>
                                     <option value="state">Select States</option>
                                     {state}
                                 </select>
@@ -237,4 +248,9 @@ class UserInfo extends React.Component {
     }
 }
 
-export default UserInfo;
+const getDetailsFromGlobalStore = (store) => {
+    return {
+        loginUser: store.user
+    }
+}
+export default connect(getDetailsFromGlobalStore)(EditProfile)

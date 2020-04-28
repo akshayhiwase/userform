@@ -1,0 +1,110 @@
+.infoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.userSection {
+  width: 40%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.head {
+  width: 100%;
+  height: 50px;
+  padding: 20px 0 0 20px;
+  box-sizing: border-box;
+}
+.head h3 {
+  margin: 0;
+}
+.formData {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.inputFill {
+  width: 90%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.inputFill input {
+  width: 90%;
+  height: 40px;
+  font-size: 15px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.inputFill label {
+  font-weight: 600;
+}
+.inputFill select {
+  width: 90%;
+  height: 40px;
+  font-size: 15px;
+}
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  align-items: center;
+  width: 15px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+.genderSelect {
+  width: 90%;
+  height: 100px;
+}
+.gender {
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+  justify-content: space-evenly;
+}
+.genderSelect > label {
+  font-weight: 600;
+}
+.addUserButton {
+  width: 81%;
+  height: 50px;
+  margin: 20px 0 20px 0;
+  text-align: center;
+}
+.addUserButton button {
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  background-color: #3498db;
+  font-size: 90%;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  border: 0;
+}
+.user {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 20%;
+  color: whitesmoke;
+  margin-top: 10px;
+  background-color: #f5a623;
+}
+.user h1 {
+  font-size: 25px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 300;
+  color: whitesmoke;
+}
+.user img {
+  width: 50%;
+}
+button:hover {
+  background-color: #2874a6;
+  color: whitesmoke;
+}

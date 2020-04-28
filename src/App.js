@@ -4,6 +4,7 @@ import classes from './App.module.css';
 import LoginPage from './Components/LoginPage/Login';
 import UserInfo from './Components/UserInfo/UserInfo';
 import Profile from './Components/Profile/Profile';
+import EditProfile from './Components/EditProfile/EditProfile';
 
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
         <div className={classes.mainContainer}>
           <Switch>
             <Route path="/profile" component={Profile} />
+            <Route path="/editprofile" component={EditProfile} />
             <Route path="/newuser" component={UserInfo} />
             <Route path="/" component={LoginPage} />
           </Switch>

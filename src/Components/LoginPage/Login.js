@@ -28,6 +28,7 @@ class Login extends React.Component {
             this.registerdUser(loginUser)
         } else {
             alert("Please create account")
+            e.target.reset()
         }
 
     }
@@ -62,7 +63,7 @@ class Login extends React.Component {
                 break;
             case "password":
                 formErrors.password =
-                    value.length < 8 ? "minimum 8 characaters required" : "";
+                    value.length < 8 ? "minimum 8 characaters" : "";
                 break;
             default:
                 break;

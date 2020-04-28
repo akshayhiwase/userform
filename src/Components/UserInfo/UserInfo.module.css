@@ -1,3 +1,7 @@
+span {
+  color: #e74c3c;
+}
+
 .infoContainer {
   width: 100%;
   display: flex;
@@ -107,4 +111,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 button:hover {
   background-color: #2874a6;
   color: whitesmoke;
+}
+@media (max-width: 768px) {
+  .infoContainer {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .userSection {
+    width: 80%;
+  }
+  .user {
+    width: 60%;
+  }
+}
+@media (max-width: 468px) {
+  .infoContainer {
+    width: 100%;
+  }
+  .userSection {
+    width: 60%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 }

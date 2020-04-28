@@ -27,21 +27,21 @@ class Profile extends Component {
                         </div>
                         <div className={classes.informationSection}>
                             <div className={classes.information}>
-                                <h3>Hello</h3>
-                                <h1>{this.props.loginUser.firstname}{this.props.loginUser.lastname}</h1>
+                                <h3>Hello,</h3>
+                                <h1>{this.props.loginUser.firstname}   {this.props.loginUser.lastname}</h1>
                             </div>
                             <div className={classes.personelInfoSection}>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="far fa-envelope"></i> : <strong>{this.props.loginUser.email}</strong></p>
+                                    <p><i className="far fa-envelope"></i> : {this.props.loginUser.email}</p>
                                 </div>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="fas fa-phone-alt"></i> : <strong>{this.props.loginUser.number}</strong></p>
+                                    <p><i className="fas fa-phone-alt"></i> : {this.props.loginUser.number}</p>
                                 </div>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="far fa-calendar-alt"></i> : <strong>{this.props.loginUser.dob}</strong></p>
+                                    <p><i className="far fa-calendar-alt"></i> : {this.props.loginUser.dob}</p>
                                 </div>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="fas fa-home"></i> : <strong>{this.props.loginUser.country}{this.props.loginUser.state}</strong></p>
+                                    <p><i className="fas fa-home"></i> : {this.props.loginUser.country} ({this.props.loginUser.state})</p>
                                 </div>
 
                             </div>

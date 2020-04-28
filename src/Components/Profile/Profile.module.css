@@ -5,14 +5,14 @@
   justify-content: center;
   align-items: center;
   background: #b2fefa;
-  background: -webkit-linear-gradient(to right, #0ed2f7, #b2fefa);
+  background: -webkit-linear-gradient(to right, #5cd9f1, #b2fefa);
   background: linear-gradient(to right, #0ed2f7, #b2fefa);
 }
 .profileSection {
   width: 60%;
   height: 500px;
-  background-color: whitesmoke;
-  border-radius: 10px;
+  background-color: #d7dbdd;
+  border-radius: 15px;
 }
 .profileblock {
   width: 100%;
@@ -21,12 +21,13 @@
   justify-content: space-around;
 }
 .profilePicSection {
-  width: 55%;
+  width: 45%;
   display: flex;
   align-items: center;
 }
 .profileSection h3 {
   margin: 0;
+  color: #212f3d;
 }
 .profilePicSection img {
   width: 70%;
@@ -38,7 +39,14 @@
   width: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+.information h1 {
+  color: #212f3d;
+  font-weight: 600;
+}
+.personalinformation p {
+  color: #212f3d;
 }
 .personalinformation i {
   font-size: 20px;
@@ -71,4 +79,20 @@
 button:hover {
   background-color: #2874a6;
   color: whitesmoke;
+}
+@media (max-width: 768px) {
+  .profileblock {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .informationSection {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+}
+@media (max-width: 468px) {
 }

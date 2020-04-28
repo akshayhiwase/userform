@@ -8,8 +8,6 @@ export function loadUser(user) {
                 dispatch(userLogin(response.data[0]));
             }
 
-
-
         })
     }
 }

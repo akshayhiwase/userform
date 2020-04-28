@@ -1,11 +1,8 @@
 import React from 'react';
 import classes from './EditProfile.module.css';
 import States from '../UserInfo/States.json';
-import { emailRegex, formValid, numberRegex } from '../../Utils/Utilities/Utilities';
-import { connect } from 'react-redux'
-// import newUser from '../../Utils/NewUser/NewUser';
-
-
+import { emailRegex, numberRegex } from '../../Utils/Utilities/Utilities';
+import { connect } from 'react-redux';
 
 class EditProfile extends React.Component {
     constructor(props) {
@@ -26,33 +23,24 @@ class EditProfile extends React.Component {
             }
         };
     }
-    componentWillMount = () => {
-        localStorage.getItem("myUser") === null ? this.setState({ alreadyUser: '' })
-            : this.setState({ alreadyUser: JSON.parse(localStorage.getItem("myUser")) })
-    }
-
     onFormSubmit = (e) => {
         e.preventDefault()
-        if (formValid(this.state)) {
-            const userData = {
-                email: e.target.email.value,
-                firstname: e.target.firstName.value,
-                lastname: e.target.lastName.value,
-                number: e.target.number.value,
-                dob: e.target.dob.value,
-                gender: e.target.gender.value,
-                country: e.target.country.value,
-                state: e.target.state.value
-            }
-            console.log(userData)
-            // newUser(userData)
-            alert("Your profile succesfully Created now You can Login to your account")
-            // const path = `/`;
-            // this.props.history.push(path)
-        } else {
-            console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-            alert("Please fill as per Required information")
+        const userData = {
+            email: e.target.email.value,
+            firstname: e.target.firstName.value,
+            lastname: e.target.lastName.value,
+            number: e.target.number.value,
+            dob: e.target.dob.value,
+            gender: e.target.gender.value,
+            country: e.target.country.value,
+            state: e.target.state.value
         }
+        console.log(userData)
+        this.setState({ account: JSON.stringify(userData) })
+        sessionStorage.setItem("editedData", JSON.stringify(userData))
+        alert("Your Edited profile succesfully Stored in Sesssion Storage")
+        const path = `/profile`;
+        this.props.history.push(path)
 
     }
     onUserEdited = (value) => {
@@ -113,7 +101,7 @@ class EditProfile extends React.Component {
                 {user}
                 <div className={classes.userSection}>
                     <div className={classes.head}>
-                        <h3>Please Fill Your Details</h3>
+                        <h3>Edit Details</h3>
                     </div>
                     <form action="" onSubmit={this.onFormSubmit}>
                         <div className={classes.formData}>
@@ -158,10 +146,10 @@ class EditProfile extends React.Component {
                                     placeholder="Email"
                                     type="email"
                                     name="email"
-                                    value={this.state.account.firstname}
+                                    value={this.state.account.email}
                                     noValidate
                                     required
-                                // onChange={this.onUserEdited}
+                                    onChange={this.onUserEdited}
                                 />
                                 {this.state.formErrors.email.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.email}</span>

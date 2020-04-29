@@ -40,10 +40,15 @@ class Login extends React.Component {
                         alert("Youre Profile is not registerd please create account")
                     } else {
                         resolve(data);
-                        console.log(data.data[0]);
-                        alert("Login Successfull")
-                        const path = `profile`;
-                        this.props.history.push(path);
+                        if (data.data[0].password === user.password) {
+                            console.log(data.data[0]);
+                            alert("Login Successfull")
+                            const path = `profile`;
+                            this.props.history.push(path);
+                        } else {
+                            alert("You enter wrong password")
+                        }
+
                     }
                 }).catch(err => {
                     console.log("Error occured", err);

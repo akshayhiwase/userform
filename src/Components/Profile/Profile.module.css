@@ -4,14 +4,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #b2fefa;
-  background: -webkit-linear-gradient(to right, #5cd9f1, #b2fefa);
-  background: linear-gradient(to right, #0ed2f7, #b2fefa);
+  background-image: linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
 }
 .profileSection {
   width: 60%;
   height: 500px;
-  background-color: #d7dbdd;
+  background-image: linear-gradient(
+    to right top,
+    #e1f1f4,
+    #cee4e2,
+    #bed6cc,
+    #b4c7b5,
+    #afb79e
+  );
   border-radius: 15px;
 }
 .profileblock {
@@ -40,6 +59,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+.information {
+  width: 30;
+}
+.personalinformation {
+  width: 60;
 }
 .information h1 {
   color: #212f3d;

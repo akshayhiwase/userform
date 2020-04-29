@@ -1,5 +1,6 @@
 let defaultState = {
-    user: {}
+    user: {},
+    editUser: {}
 }
 
 const mainReducer = (state = defaultState, action) => {

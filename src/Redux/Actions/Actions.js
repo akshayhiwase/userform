@@ -7,7 +7,6 @@ export function loadUser(user) {
                 console.log(response.data[0])
                 dispatch(userLogin(response.data[0]));
             }
-
         })
     }
 }

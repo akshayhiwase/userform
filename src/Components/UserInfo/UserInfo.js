@@ -25,11 +25,6 @@ class UserInfo extends React.Component {
             }
         };
     }
-    componentWillMount = () => {
-        localStorage.getItem("myUser") === null ? this.setState({ alreadyUser: '' })
-            : this.setState({ alreadyUser: JSON.parse(localStorage.getItem("myUser")) })
-    }
-
     onFormSubmit = (e) => {
         e.preventDefault()
         if (formValid(this.state)) {
@@ -89,6 +84,10 @@ class UserInfo extends React.Component {
 
         this.setState({ formErrors, [name]: value });
     };
+    backToLoginPage = () => {
+        const path = `/`
+        this.props.history.push(path)
+    }
 
     render() {
         const user = <div className={classes.user}>
@@ -107,7 +106,8 @@ class UserInfo extends React.Component {
                 {user}
                 <div className={classes.userSection}>
                     <div className={classes.head}>
-                        <h3>Please Fill Your Details</h3>
+                        <h3>Create Your Account</h3>
+                        <small onClick={this.backToLoginPage}>Click here to go back login page...</small>
                     </div>
                     <form action="" onSubmit={this.onFormSubmit}>
                         <div className={classes.formData}>
@@ -194,22 +194,14 @@ class UserInfo extends React.Component {
                                 <input type="date" required name="dob" />
                             </div>
 
-                            <div className={classes.genderSelect}>
+                            <div className={classes.inputFill}>
                                 <label htmlFor="">Gender</label>
-                                <div className={classes.gender}>
-                                    <div>
-                                        <input type="radio" name="gender" value="male" required />
-                                        <label>Male</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="gender" value="female" required />
-                                        <label>Female</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="gender" value="other" required />
-                                        <label>Other</label>
-                                    </div>
-                                </div>
+                                <select className={classes.userSelectMenu} name="gender" required>
+                                    <option value="Select country">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
                             </div>
                             <div className={classes.inputFill}>
                                 <label>Country</label>

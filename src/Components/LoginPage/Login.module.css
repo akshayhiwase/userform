@@ -7,7 +7,21 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d5d8dc;
+  background-image: linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
 }
 .loginContaint {
   width: 33%;
@@ -60,8 +74,7 @@ form {
 .inputFieldSection p {
   margin: 0;
   font-size: 14px;
-
-  color: #17202a;
+  color: blue;
 }
 .inputFieldSection button {
   width: 90%;
@@ -79,9 +92,6 @@ button:hover {
   color: whitesmoke;
 }
 @media (max-width: 768px) {
-  .loginSection {
-    height: auto;
-  }
   .loginContaint {
     width: 60%;
     margin-top: 50px;
@@ -89,9 +99,6 @@ button:hover {
   }
 }
 @media (max-width: 468px) {
-  .loginSection {
-    height: auto;
-  }
   .loginContaint {
     width: 60%;
     margin-top: 50px;

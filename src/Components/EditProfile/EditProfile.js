@@ -3,6 +3,11 @@ import classes from './EditProfile.module.css';
 import States from '../UserInfo/States.json';
 import { emailRegex, numberRegex } from '../../Utils/Utilities/Utilities';
 import { connect } from 'react-redux';
+import newUser from '../../Utils/NewUser/NewUser';
+import { loadUser } from '../../Redux/Actions/Actions';
+
+
+
 
 class EditProfile extends React.Component {
     constructor(props) {
@@ -29,6 +34,7 @@ class EditProfile extends React.Component {
             email: e.target.email.value,
             firstname: e.target.firstName.value,
             lastname: e.target.lastName.value,
+            password: e.target.password.value,
             number: e.target.number.value,
             dob: e.target.dob.value,
             gender: e.target.gender.value,
@@ -36,19 +42,14 @@ class EditProfile extends React.Component {
             state: e.target.state.value
         }
         console.log(userData)
-        this.setState({ account: JSON.stringify(userData) })
-        sessionStorage.setItem("editedData", JSON.stringify(userData))
-        alert("Your Edited profile succesfully Stored in Sesssion Storage")
-        const path = `/profile`;
+        newUser(userData)
+        loadUser(userData)
+        alert("Your profile succesfully updated")
+        const path = `profile`;
         this.props.history.push(path)
 
     }
-    onUserEdited = (value) => {
-        this.setState({
-            account: value
-        })
-        console.log(value)
-    }
+
     handleChange = e => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -84,6 +85,11 @@ class EditProfile extends React.Component {
         this.setState({ formErrors, [name]: value });
     };
 
+    backToProfilePage = () => {
+        const path = `profile`
+        this.props.history.push(path)
+    }
+
     render() {
         const user = <div className={classes.user}>
             <h1>Welcome</h1>
@@ -96,12 +102,12 @@ class EditProfile extends React.Component {
         })
 
         return (
-
             <div className={classes.infoContainer}>
                 {user}
                 <div className={classes.userSection}>
                     <div className={classes.head}>
-                        <h3>Edit Details</h3>
+                        <h3>Update Your Details</h3>
+                        <small onClick={this.backToProfilePage}>Click here to go back profile page...</small>
                     </div>
                     <form action="" onSubmit={this.onFormSubmit}>
                         <div className={classes.formData}>
@@ -112,10 +118,11 @@ class EditProfile extends React.Component {
                                     placeholder="First Name"
                                     type="text"
                                     name="firstName"
-                                    value={this.state.account.firstname}
                                     noValidate
                                     required
-                                    onChange={(e) => this.onUserEdited(e.target.value)}
+                                    onChange={this.handleChange}
+
+                                    defaultValue={this.state.account.firstname}
                                 />
                                 {this.state.formErrors.firstName.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.firstName}</span>
@@ -129,10 +136,11 @@ class EditProfile extends React.Component {
                                     placeholder="Last Name"
                                     type="text"
                                     name="lastName"
-                                    value={this.state.account.lastname}
                                     noValidate
                                     required
-                                    onChange={(e) => this.onUserEdited(e.target.value)}
+                                    onChange={this.handleChange}
+
+                                    defaultValue={this.state.account.lastname}
                                 />
                                 {this.state.formErrors.lastName.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.lastName}</span>
@@ -146,10 +154,11 @@ class EditProfile extends React.Component {
                                     placeholder="Email"
                                     type="email"
                                     name="email"
-                                    value={this.state.account.email}
                                     noValidate
                                     required
-                                // onChange={this.onUserEdited}
+                                    onChange={this.handleChange}
+
+                                    defaultValue={this.state.account.email}
                                 />
                                 {this.state.formErrors.email.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.email}</span>
@@ -164,9 +173,10 @@ class EditProfile extends React.Component {
                                     type="password"
                                     name="password"
                                     noValidate
-                                    value={this.state.account.password}
                                     required
-                                    onChange={(e) => this.onUserEdited(e.target.value)}
+                                    onChange={this.handleChange}
+
+                                    defaultValue={this.state.account.password}
                                 />
                                 {this.state.formErrors.password.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.password}</span>
@@ -179,10 +189,11 @@ class EditProfile extends React.Component {
                                     placeholder="Number"
                                     type="number"
                                     name="number"
-                                    value={this.state.account.number}
                                     noValidate
                                     required
-                                    onChange={(e) => this.onUserEdited(e.target.value)}
+                                    onChange={this.handleChange}
+
+                                    defaultValue={this.state.account.number}
                                 />
                                 {this.state.formErrors.number.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.number}</span>
@@ -190,36 +201,29 @@ class EditProfile extends React.Component {
                             </div>
                             <div className={classes.inputFill}>
                                 <label>DOB</label>
-                                <input type="date" required name="dob" value={this.state.account.dob} onChange={(e) => this.onUserEdited(e.target.value)} />
+                                <input type="date" required name="dob" defaultValue={this.state.account.dob} onChange={this.handleChange} />
                             </div>
 
-                            <div className={classes.genderSelect}>
+                            <div className={classes.inputFill}>
                                 <label htmlFor="">Gender</label>
-                                <div className={classes.gender}>
-                                    <div>
-                                        <input type="radio" name="gender" value="male" required />
-                                        <label>Male</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="gender" value="female" required />
-                                        <label>Female</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="gender" value="other" required />
-                                        <label>Other</label>
-                                    </div>
-                                </div>
+                                <select className={classes.userSelectMenu} name="gender" defaultValue={this.state.account.gender} onChange={this.handleChange} required >
+                                    <option value="Select Gender">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+
                             </div>
                             <div className={classes.inputFill}>
                                 <label>Country</label>
-                                <select className={classes.userSelectMenu} name="country" required value={this.state.account.country} onChange={(e) => this.onUserEdited(e.target.value)}>
+                                <select className={classes.userSelectMenu} name="country" required defaultValue={this.state.account.country} onChange={this.handleChange} >
                                     <option value="Select country">Select Country</option>
                                     <option value="India">India</option>
                                 </select>
                             </div>
                             <div className={classes.inputFill}>
                                 <label>State</label>
-                                <select className={classes.userSelectMenu} name="state" required value={this.state.account.state} onChange={(e) => this.onUserEdited(e.target.value)}>
+                                <select className={classes.userSelectMenu} name="state" required defaultValue={this.state.account.state} onChange={this.handleChange} >
                                     <option value="state">Select States</option>
                                     {state}
                                 </select>
@@ -235,6 +239,7 @@ class EditProfile extends React.Component {
         )
     }
 }
+
 
 const getDetailsFromGlobalStore = (store) => {
     return {

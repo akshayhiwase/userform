@@ -80,6 +80,9 @@
 .inputFill label {
   font-weight: 600;
 }
+.numberSection label {
+  font-weight: 600;
+}
 .inputFill select {
   width: 100%;
   height: 40px;

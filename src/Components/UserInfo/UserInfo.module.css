@@ -66,6 +66,9 @@ span {
   width: 100%;
   height: 40px;
 }
+.numberSection label {
+  font-weight: 600;
+}
 .numberSection input[type="tel"] {
   height: 40px;
   width: 100%;

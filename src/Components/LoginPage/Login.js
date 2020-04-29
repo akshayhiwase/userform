@@ -124,7 +124,7 @@ class Login extends React.Component {
                             <button>Login</button>
                         </div>
                         <div className={classes.inputFieldSection}>
-                            <p>New user please create account...</p>
+                            <p>New user please create account</p>
                             <button onClick={this.onNewUserClicked}>Create Account</button>
                         </div>
                     </form>

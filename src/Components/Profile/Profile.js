@@ -32,16 +32,16 @@ class Profile extends Component {
                             </div>
                             <div className={classes.personelInfoSection}>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="far fa-envelope"></i> : {this.props.loginUser.email}</p>
+                                    <p><i className="far fa-envelope"></i>  {this.props.loginUser.email}</p>
                                 </div>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="fas fa-phone-alt"></i> : {this.props.loginUser.number}</p>
+                                    <p><i className="fas fa-phone-alt"></i>  {this.props.loginUser.number}</p>
                                 </div>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="far fa-calendar-alt"></i> : {this.props.loginUser.dob}</p>
+                                    <p><i className="far fa-calendar-alt"></i>  {this.props.loginUser.dob}</p>
                                 </div>
                                 <div className={classes.personalinformation}>
-                                    <p><i className="fas fa-home"></i> : {this.props.loginUser.country} ({this.props.loginUser.state})</p>
+                                    <p><i className="fas fa-home"></i>  {this.props.loginUser.country} ({this.props.loginUser.state})</p>
                                 </div>
 
                             </div>

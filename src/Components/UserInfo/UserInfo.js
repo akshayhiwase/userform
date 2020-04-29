@@ -3,7 +3,8 @@ import classes from './UserInfo.module.css';
 import States from './States.json';
 import { emailRegex, formValid, numberRegex } from '../../Utils/Utilities/Utilities';
 import newUser from '../../Utils/NewUser/NewUser';
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 class UserInfo extends React.Component {
@@ -107,7 +108,7 @@ class UserInfo extends React.Component {
                 <div className={classes.userSection}>
                     <div className={classes.head}>
                         <h3>Create Your Account</h3>
-                        <small onClick={this.backToLoginPage}>Click here to go back login page...</small>
+                        <small onClick={this.backToLoginPage}> <i className="fas fa-arrow-circle-left"></i></small>
                     </div>
                     <form action="" onSubmit={this.onFormSubmit}>
                         <div className={classes.formData}>
@@ -174,34 +175,51 @@ class UserInfo extends React.Component {
                                     <span className="errorMessage">{this.state.formErrors.password}</span>
                                 )}
                             </div>
-                            <div className={classes.inputFill}>
+                            <div className={classes.numberSection}>
                                 <label htmlFor="number">Number</label>
-                                <input
-                                    className={this.state.formErrors.number.length > 0 ? "error" : null}
-                                    placeholder="Number"
-                                    type="number"
-                                    name="number"
-                                    noValidate
-                                    required
-                                    onChange={this.handleChange}
+                                <PhoneInput
+                                    country='in'
+                                    inputProps={{
+                                        name: 'number',
+                                        required: true,
+                                        autoFocus: true,
+                                        placeholder: "Enter phone number",
+
+                                    }}
+                                    isValid={(value, country) => {
+                                        if (value.match(/12345/)) {
+                                            return 'Invalid value: ' + value + ', ' + country.name;
+                                        } else if (value.match(/1234/)) {
+                                            return false;
+                                        } else {
+                                            return true;
+
+                                        }
+                                    }}
                                 />
-                                {this.state.formErrors.number.length > 0 && (
-                                    <span className="errorMessage">{this.state.formErrors.number}</span>
-                                )}
                             </div>
                             <div className={classes.inputFill}>
-                                <label>DOB</label>
+                                <label>Birth Date</label>
                                 <input type="date" required name="dob" />
                             </div>
 
-                            <div className={classes.inputFill}>
+                            <div className={classes.genderSelect}>
                                 <label htmlFor="">Gender</label>
-                                <select className={classes.userSelectMenu} name="gender" required>
-                                    <option value="Select country">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                                <div className={classes.gender}>
+                                    <div>
+                                        <input type="radio" name="gender" value="male" required />
+                                        <label>Male</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="gender" value="female" required />
+                                        <label>Female</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="gender" value="other" required />
+                                        <label>Other</label>
+                                    </div>
+                                </div>
+
                             </div>
                             <div className={classes.inputFill}>
                                 <label>Country</label>

@@ -5,6 +5,8 @@ import { emailRegex, numberRegex } from '../../Utils/Utilities/Utilities';
 import { connect } from 'react-redux';
 import newUser from '../../Utils/NewUser/NewUser';
 import { loadUser } from '../../Redux/Actions/Actions';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 
@@ -15,6 +17,7 @@ class EditProfile extends React.Component {
 
         this.state = {
             account: { ...this.props.loginUser },
+            genderChanged: false,
             firstName: null,
             lastName: null,
             email: null,
@@ -29,12 +32,11 @@ class EditProfile extends React.Component {
         };
     }
     onFormSubmit = (e) => {
+        console.log(e.target.firstName.value)
         e.preventDefault()
         const userData = {
-            email: e.target.email.value,
             firstname: e.target.firstName.value,
             lastname: e.target.lastName.value,
-            password: e.target.password.value,
             number: e.target.number.value,
             dob: e.target.dob.value,
             gender: e.target.gender.value,
@@ -49,6 +51,7 @@ class EditProfile extends React.Component {
         this.props.history.push(path)
 
     }
+
 
     handleChange = e => {
         e.preventDefault();
@@ -107,7 +110,7 @@ class EditProfile extends React.Component {
                 <div className={classes.userSection}>
                     <div className={classes.head}>
                         <h3>Update Your Details</h3>
-                        <small onClick={this.backToProfilePage}>Click here to go back profile page...</small>
+                        <small onClick={this.backToProfilePage}><i className="fas fa-arrow-circle-left"></i></small>
                     </div>
                     <form action="" onSubmit={this.onFormSubmit}>
                         <div className={classes.formData}>
@@ -120,9 +123,8 @@ class EditProfile extends React.Component {
                                     name="firstName"
                                     noValidate
                                     required
-                                    onChange={this.handleChange}
-
                                     defaultValue={this.state.account.firstname}
+                                    onChange={this.handleChange}
                                 />
                                 {this.state.formErrors.firstName.length > 0 && (
                                     <span className="errorMessage">{this.state.formErrors.firstName}</span>
@@ -146,72 +148,51 @@ class EditProfile extends React.Component {
                                     <span className="errorMessage">{this.state.formErrors.lastName}</span>
                                 )}
                             </div>
-
-                            <div className={classes.inputFill}>
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    className={this.state.formErrors.email.length > 0 ? "error" : null}
-                                    placeholder="Email"
-                                    type="email"
-                                    name="email"
-                                    noValidate
-                                    required
-                                    onChange={this.handleChange}
-
-                                    defaultValue={this.state.account.email}
-                                />
-                                {this.state.formErrors.email.length > 0 && (
-                                    <span className="errorMessage">{this.state.formErrors.email}</span>
-                                )}
-                            </div>
-
-                            <div className={classes.inputFill}>
-                                <label htmlFor="password">Password</label>
-                                <input
-                                    className={this.state.formErrors.password.length > 0 ? "error" : null}
-                                    placeholder="Password"
-                                    type="password"
-                                    name="password"
-                                    noValidate
-                                    required
-                                    onChange={this.handleChange}
-
-                                    defaultValue={this.state.account.password}
-                                />
-                                {this.state.formErrors.password.length > 0 && (
-                                    <span className="errorMessage">{this.state.formErrors.password}</span>
-                                )}
-                            </div>
-                            <div className={classes.inputFill}>
+                            <div className={classes.numberSection}>
                                 <label htmlFor="number">Number</label>
-                                <input
-                                    className={this.state.formErrors.number.length > 0 ? "error" : null}
-                                    placeholder="Number"
-                                    type="number"
-                                    name="number"
-                                    noValidate
-                                    required
-                                    onChange={this.handleChange}
+                                <PhoneInput
+                                    country='in'
+                                    inputProps={{
+                                        name: 'number',
+                                        required: true,
+                                        autoFocus: true,
+                                        placeholder: "Enter phone number",
 
-                                    defaultValue={this.state.account.number}
+                                    }}
+                                    value={this.state.account.number}
+                                    isValid={(value, country) => {
+                                        if (value.match(/12345/)) {
+                                            return 'Invalid value: ' + value + ', ' + country.name;
+                                        } else if (value.match(/1234/)) {
+                                            return false;
+                                        } else {
+                                            return true;
+                                        }
+                                    }}
                                 />
-                                {this.state.formErrors.number.length > 0 && (
-                                    <span className="errorMessage">{this.state.formErrors.number}</span>
-                                )}
                             </div>
                             <div className={classes.inputFill}>
-                                <label>DOB</label>
+                                <label>Birth Date</label>
                                 <input type="date" required name="dob" defaultValue={this.state.account.dob} onChange={this.handleChange} />
                             </div>
 
-                            <div className={classes.inputFill}>
+                            <div className={classes.genderSelect}>
                                 <label htmlFor="">Gender</label>
-                                <select className={classes.userSelectMenu} name="gender" defaultValue={this.state.account.gender} onChange={this.handleChange} required >
-                                    <option value="Select Gender">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                <div className={classes.gender}>
+                                    <div>
+                                        <input type="radio" name="gender" defaultValue="male" required checked={this.state.account.gender === "male" ? true : false} onChange={this.handleChange} />
+                                        <label>Male</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="gender" defaultValue="female" required checked={this.state.account.gender === "female" ? true : false} onChange={this.handleChange} />
+                                        <label>Female</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="gender" defaultValue="male" required checked={this.state.account.gender === "other" ? true : false}
+                                            onChange={this.handleChange} />
+                                        <label>Other</label>
+                                    </div>
+                                </div>
 
                             </div>
                             <div className={classes.inputFill}>
@@ -229,7 +210,7 @@ class EditProfile extends React.Component {
                                 </select>
                             </div>
                             <div className={classes.addUserButton}>
-                                <button >Submit</button>
+                                <button>Submit</button>
                             </div>
                         </div>
                     </form>

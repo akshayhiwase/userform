@@ -6,21 +6,6 @@ span {
   width: 100%;
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(
-    to right top,
-    #d16ba5,
-    #c777b9,
-    #ba83ca,
-    #aa8fd8,
-    #9a9ae1,
-    #8aa7ec,
-    #79b3f4,
-    #69bff8,
-    #52cffe,
-    #41dfff,
-    #46eefa,
-    #5ffbf1
-  );
 }
 .userSection {
   width: 40%;
@@ -28,6 +13,8 @@ span {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  border-radius: 0px 15px 15px 0px;
+  box-shadow: 1px 0px 9px 0px #0000002e;
 }
 .head {
   width: 100%;
@@ -39,11 +26,21 @@ span {
 }
 .head h3 {
   margin: 0;
-  font-weight: 500;
+  width: 70%;
+  color: #f5a623;
+  font-size: 25px;
+  font-weight: 700;
 }
 .head small {
-  color: blue;
+  color: #f5a623;
   cursor: pointer;
+  width: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.head small:hover {
+  color: #3498db;
 }
 .formData {
   width: 80%;
@@ -52,26 +49,45 @@ span {
   flex-direction: column;
 }
 .inputFill {
-  width: 90%;
+  width: 100%;
   height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
+.numberSection {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.numberSection > div {
+  width: 100%;
+  height: 40px;
+}
+.numberSection input[type="tel"] {
+  height: 40px;
+  width: 100%;
+}
 .inputFill input {
-  width: 90%;
+  width: 100%;
   height: 40px;
   font-size: 15px;
   padding-left: 10px;
   box-sizing: border-box;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
 }
+
 .inputFill label {
   font-weight: 600;
 }
 .inputFill select {
-  width: 90%;
+  width: 100%;
   height: 40px;
   font-size: 15px;
+  border-radius: 5px;
 }
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -81,7 +97,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   -webkit-appearance: none;
 }
 .genderSelect {
-  width: 90%;
+  width: 100%;
   height: 100px;
 }
 .gender {
@@ -94,31 +110,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-weight: 600;
 }
 .addUserButton {
-  width: 81%;
+  width: 100%;
   height: 50px;
   margin: 20px 0 20px 0;
   text-align: center;
 }
 .addUserButton button {
   width: 100%;
-  height: 50px;
+  height: 40px;
   color: #fff;
   background-color: #3498db;
   font-size: 90%;
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
-  border: 0;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
 }
 .user {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  width: 20%;
+  width: 25%;
   color: whitesmoke;
   margin-top: 10px;
   background-color: #f5a623;
+  border-radius: 15px 0 0px 15px;
+  box-shadow: 1px 0px 9px 0px #0000002e;
 }
 .user h1 {
   font-size: 25px;
@@ -131,7 +150,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 50%;
 }
 button:hover {
-  background-color: #2874a6;
+  background-color: #4eeb9d;
   color: whitesmoke;
 }
 @media (max-width: 768px) {

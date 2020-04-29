@@ -7,41 +7,31 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(
-    to right top,
-    #d16ba5,
-    #c777b9,
-    #ba83ca,
-    #aa8fd8,
-    #9a9ae1,
-    #8aa7ec,
-    #79b3f4,
-    #69bff8,
-    #52cffe,
-    #41dfff,
-    #46eefa,
-    #5ffbf1
-  );
 }
 .loginContaint {
   width: 33%;
-  background-color: whitesmoke;
-  height: 400px;
+  background-color: white;
+  box-shadow: 1px 0px 9px 0px #0000002e;
+  height: 500px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
+  border-radius: 15px;
 }
 .infoTextDiv {
   width: 100%;
   height: 30px;
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .infoTextDiv h3 {
-  font-weight: 600;
+  font-weight: 100;
   margin: 0;
-  color: #566573;
-  font-size: 20px;
+  color: #555;
+  font-size: 25px;
+  text-transform: capitalize;
 }
 
 form {
@@ -70,11 +60,14 @@ form {
   font-size: 15px;
   padding-left: 10px;
   box-sizing: border-box;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
 }
 .inputFieldSection p {
   margin: 0;
   font-size: 14px;
-  color: blue;
+  color: #f5a623;
+  font-weight: 600;
 }
 .inputFieldSection button {
   width: 90%;
@@ -85,10 +78,11 @@ form {
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
-  border: 0;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
 }
-button:hover {
-  background-color: #2874a6;
+.inputFieldSection button:hover {
+  background-color: #4eeb9d;
   color: whitesmoke;
 }
 @media (max-width: 768px) {

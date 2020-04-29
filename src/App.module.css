@@ -5,3 +5,7 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background: white;
 }
+button:hover {
+  background-color: #4eebde;
+  color: whitesmoke;
+}
